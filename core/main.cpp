@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQuick/QQuickView>
 
 int main(int argc, char*argv[])
 {

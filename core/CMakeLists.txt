@@ -1,4 +1,4 @@
-add_executable(todo_app main.cpp)
+add_executable(todo_app main.cpp toDoModel.cpp)
 
 target_link_libraries(
        todo_app PUBLIC 
