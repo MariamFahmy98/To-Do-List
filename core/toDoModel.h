@@ -14,6 +14,7 @@ struct Task {
 class ToDoModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum TaskRoles {
         descriptionRole = Qt::UserRole,
@@ -28,6 +29,14 @@ public:
 
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
+
+    int count() { return rowCount(); }
+    Q_INVOKABLE void insertNewTask(QString description);
+    Q_INVOKABLE void removeTask(int index);
+
+
+signals:
+    void countChanged();
 
 private:
     QVector<Task> tasks;

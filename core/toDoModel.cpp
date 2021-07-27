@@ -62,3 +62,22 @@ Qt::ItemFlags ToDoModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEditable;
 }
 
+void ToDoModel::insertNewTask(QString description)
+{
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    Task newTask;
+    newTask.description = description;
+    newTask.isFinished = false;
+    tasks.append(newTask);
+    endInsertRows();
+    emit countChanged();
+}
+
+void ToDoModel::removeTask(int index)
+{
+    beginRemoveRows(QModelIndex(), index, index);
+    tasks.remove(index);
+    endRemoveRows();
+    emit countChanged();
+}
+
