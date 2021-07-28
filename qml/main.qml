@@ -6,7 +6,7 @@ Item {
     id: mainWindow
     visible: true
     width: 640
-    height: 1000
+    height: 900
 
     Rectangle {
         id: emptySpace
@@ -51,34 +51,12 @@ Item {
 
     }
 
-    Rectangle {
+    ButtonItem {
         id: addButton
-        width: 60
-        height: 60
         visible: !userEntry.visible
-        border.width: addButton.width * 0.01
-        anchors.right: parent.right
-        anchors.rightMargin: parent.width * 0.01
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: parent.width * 0.01
-        color: "#ffa4a2"
-        radius: 100
-
-        Text {
-            text: "+"
-            anchors.centerIn: parent
-            font.bold: true
-            font.pointSize: 24
-            wrapMode: TextEdit.WordWrap
-        }
-
-        MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            onClicked: {
-                userEntry.visible = true
-            }
-        }
+        isAddButton: true
+        buttonText: "+"
+        pointSize: 24
     }
 
     Rectangle {
@@ -116,33 +94,11 @@ Item {
             }
         }
 
-        Rectangle {
+        ButtonItem {
             id: doneButton
-            width: 60
-            height: 60
-            border.width: addButton.width * 0.01
-            anchors.right: parent.right
-            anchors.rightMargin: parent.width * 0.01
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: parent.width * 0.01
-            color: "#ffa4a2"
-            radius: 100
-
-            Text {
-                text: "Done"
-                anchors.centerIn: parent
-                font.bold: true
-                font.pointSize: 14
-                wrapMode: TextEdit.WordWrap
-            }
-
-            MouseArea {
-                id: doneMouseArea
-                anchors.fill: parent
-                onClicked: {
-                    userEntry.getInputText()
-                }
-            }
+            isAddButton: false
+            buttonText: "Done"
+            pointSize: 14
         }
 
         function getInputText() {

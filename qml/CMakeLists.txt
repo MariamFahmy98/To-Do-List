@@ -2,6 +2,7 @@ add_library(
   QML_FrontEnd
   main.qml
   Task.qml
+  ButtonItem.qml
 )
 
 find_package(Qt6 COMPONENTS Core Gui Qml Quick QuickControls2 REQUIRED)
