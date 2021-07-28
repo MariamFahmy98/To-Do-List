@@ -18,14 +18,14 @@ int ToDoModel::rowCount(const QModelIndex &parent) const
     // Return the number of the children for the root parent only.
     // Root parent is invalid parent, while its children are valid parent.
     if(parent.isValid()) return 0;
-    return tasks.size();
+    return m_tasks.size();
 }
 
 QVariant ToDoModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid()) return QVariant();
 
-    const Task requiredTask = tasks[index.row()];
+    const Task requiredTask = m_tasks[index.row()];
 
     switch (role) {
     case descriptionRole:
@@ -41,7 +41,7 @@ bool ToDoModel::setData(const QModelIndex &index, const QVariant &value, int rol
 {
     if(!index.isValid()) return false;
 
-    Task requiredTask = tasks[index.row()];
+    Task requiredTask = m_tasks[index.row()];
 
     switch (role) {
     case descriptionRole:
@@ -68,16 +68,14 @@ void ToDoModel::insertNewTask(QString description)
     Task newTask;
     newTask.description = description;
     newTask.isFinished = false;
-    tasks.append(newTask);
+    m_tasks.append(newTask);
     endInsertRows();
-    emit countChanged();
 }
 
 void ToDoModel::removeTask(int index)
 {
     beginRemoveRows(QModelIndex(), index, index);
-    tasks.remove(index);
+    m_tasks.remove(index);
     endRemoveRows();
-    emit countChanged();
 }
 

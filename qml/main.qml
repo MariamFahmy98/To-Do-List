@@ -1,24 +1,18 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.2
-import ToDoModel 1.0
 
-Window {
+Item {
     id: mainWindow
     visible: true
     width: 640
     height: 1000
-    title: qsTr("To Do List")
 
     Rectangle {
         id: emptySpace
         width: mainWindow.width
         height: mainWindow.height * 0.03
         color: "#af4448"
-    }
-
-    ToDoModel {
-        id: taskModel
     }
 
     ListView {
@@ -43,7 +37,7 @@ Window {
             }
         }
 
-        model: taskModel
+        model: modelInterface.taskModel
 
         delegate: Task {
             Text {
@@ -152,7 +146,7 @@ Window {
         }
 
         function getInputText() {
-            taskModel.insertNewTask(textInput.text)
+            modelInterface.taskModel.insertNewTask(textInput.text)
             textInput.clear()
             userEntry.visible = false
         }
