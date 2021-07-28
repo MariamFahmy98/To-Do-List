@@ -1,8 +1,8 @@
 add_library(
   QML_FrontEnd
   main.qml
-  Task.qml
   ButtonItem.qml
+  delete.png
 )
 
 find_package(Qt6 COMPONENTS Core Gui Qml Quick QuickControls2 REQUIRED)

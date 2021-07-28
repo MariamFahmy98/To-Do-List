@@ -39,16 +39,48 @@ Item {
 
         model: modelInterface.taskModel
 
-        delegate: Task {
+        delegate: Rectangle {
+            id: taskItem
+            width: taskList.width
+            height: taskList.height * 0.06
+            color: "#ffcdd2"
+
+            property int index: index
+
+            CheckBox {
+                id: taskState
+                checked: isFinished
+                anchors.verticalCenter: text.verticalCenter
+            }
+
             Text {
-                id: testtt
+                id: taskDescription
+                anchors.left: taskState.right
+                anchors.leftMargin: 5
+                anchors.verticalCenter: parent.verticalCenter
                 text: description
                 color: "#af4448"
                 font.bold: true
-                anchors.centerIn: parent
+                font.pointSize: 18
+            }
+
+            Image {
+                id: deleteImage
+                source: "delete.png"
+                sourceSize.width: parent.width * 0.06
+                sourceSize.height: parent.height * 0.6
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                fillMode: Image.PreserveAspectCrop
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    onClicked: modelInterface.taskModel.removeTask(taskItem.index)
+                }
             }
         }
-
     }
 
     ButtonItem {
