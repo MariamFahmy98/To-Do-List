@@ -1,9 +1,4 @@
-add_executable(todo_app main.cpp toDoModel.cpp modelInterface.cpp)
-
-target_link_libraries(
-       todo_app PUBLIC 
-       QML_FrontEnd
-)
+add_executable(todo_app main.cpp toDoModel.cpp modelInterface.cpp ../qml/resources.qrc ../icons/resources.qrc)
 
 find_package(Qt6 COMPONENTS Core Gui Qml Quick QuickControls2 REQUIRED)
 

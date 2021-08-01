@@ -13,7 +13,7 @@ int main(int argc, char*argv[])
     ModelInterface modelInterface;
     context->setContextProperty("modelInterface", &modelInterface);
 
-    view.setSource(QUrl(QString(QML_DIR) + "/main.qml"));
+    view.setSource(QUrl("qrc:/main.qml"));
     view.show();
     return app.exec();
 }
