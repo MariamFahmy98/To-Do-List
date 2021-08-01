@@ -6,11 +6,11 @@
 
 int main(int argc, char*argv[])
 {
+    ModelInterface modelInterface;
     QGuiApplication app(argc, argv);
     QQuickView view;
     QQmlContext *context = view.engine()->rootContext();
 
-    ModelInterface modelInterface;
     context->setContextProperty("modelInterface", &modelInterface);
 
     view.setSource(QUrl("qrc:/main.qml"));

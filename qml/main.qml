@@ -45,12 +45,13 @@ Item {
             height: taskList.height * 0.06
             color: "#ffcdd2"
 
-            property int index: index
-
             CheckBox {
                 id: taskState
-                checked: isFinished
+                checked: false
                 anchors.verticalCenter: text.verticalCenter
+                onToggled: {
+                    model.isFinished = checked
+                }
             }
 
             Text {
@@ -58,7 +59,7 @@ Item {
                 anchors.left: taskState.right
                 anchors.leftMargin: 5
                 anchors.verticalCenter: parent.verticalCenter
-                text: description
+                text: model.description
                 color: "#af4448"
                 font.bold: true
                 font.pointSize: 18
@@ -77,7 +78,7 @@ Item {
                 MouseArea {
                     id: mouseArea
                     anchors.fill: parent
-                    onClicked: modelInterface.taskModel.removeTask(taskItem.index)
+                    onClicked: modelInterface.taskModel.removeTask(model.index)
                 }
             }
         }
@@ -119,7 +120,7 @@ Item {
             color: "#e57373"
             font.bold: true
             font.pointSize: 14
-            focus: true
+            focus: userEntry.visible
 
             onAccepted: {
                 userEntry.getInputText()

@@ -41,7 +41,7 @@ bool ToDoModel::setData(const QModelIndex &index, const QVariant &value, int rol
 {
     if(!index.isValid()) return false;
 
-    Task requiredTask = m_tasks[index.row()];
+    Task& requiredTask = m_tasks[index.row()];
 
     switch (role) {
     case descriptionRole:
@@ -51,9 +51,6 @@ bool ToDoModel::setData(const QModelIndex &index, const QVariant &value, int rol
         requiredTask.isFinished = value.toBool();
         break;
     }
-
-    qDebug() << requiredTask.description;
-    qDebug() << requiredTask.isFinished;
 
     emit dataChanged(index, index, QVector<int>() << role);
     return true;
