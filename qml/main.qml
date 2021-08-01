@@ -134,9 +134,10 @@ Item {
         }
 
         function getInputText() {
+            userEntry.visible = false
+            if(textInput.text == "") return;
             modelInterface.taskModel.insertNewTask(textInput.text)
             textInput.clear()
-            userEntry.visible = false
         }
     }
 }

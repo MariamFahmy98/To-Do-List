@@ -52,6 +52,9 @@ bool ToDoModel::setData(const QModelIndex &index, const QVariant &value, int rol
         break;
     }
 
+    qDebug() << requiredTask.description;
+    qDebug() << requiredTask.isFinished;
+
     emit dataChanged(index, index, QVector<int>() << role);
     return true;
 }
