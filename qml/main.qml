@@ -5,8 +5,19 @@ import QtQuick.Window 2.2
 Item {
     id: mainWindow
     visible: true
-    width: 640
-    height: 900
+    anchors.fill: parent
+
+    onWidthChanged: {
+        if(mainWindow.width < 600) {
+            console.log("width")
+        }
+    }
+
+    onHeightChanged: {
+        if(mainWindow.height < 300) {
+            console.log("height")
+        }
+    }
 
     Rectangle {
         id: emptySpace
@@ -68,8 +79,8 @@ Item {
             Image {
                 id: deleteImage
                 source: "delete.png"
-                sourceSize.width: parent.width * 0.06
-                sourceSize.height: parent.height * 0.6
+                sourceSize.width: 40
+                sourceSize.height: 40
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 10

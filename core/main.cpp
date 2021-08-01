@@ -14,6 +14,7 @@ int main(int argc, char*argv[])
     context->setContextProperty("modelInterface", &modelInterface);
 
     view.setSource(QUrl("qrc:/main.qml"));
+    view.resize(640, 900);
     view.show();
     return app.exec();
 }
