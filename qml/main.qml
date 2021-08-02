@@ -65,7 +65,18 @@ Item {
                 }
             }
 
-            Text {
+            /*Text {
+                id: taskDescription
+                anchors.left: taskState.right
+                anchors.leftMargin: 5
+                anchors.verticalCenter: parent.verticalCenter
+                text: model.description
+                color: "#af4448"
+                font.bold: true
+                font.pointSize: 18
+            }*/
+
+            TextEdit {
                 id: taskDescription
                 anchors.left: taskState.right
                 anchors.leftMargin: 5
