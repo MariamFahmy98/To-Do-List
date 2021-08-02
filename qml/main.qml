@@ -59,7 +59,7 @@ Item {
             CheckBox {
                 id: taskState
                 checked: false
-                anchors.verticalCenter: text.verticalCenter
+                anchors.verticalCenter: taskDescription.verticalCenter
                 onToggled: {
                     model.isFinished = checked
                 }
@@ -87,7 +87,7 @@ Item {
                 fillMode: Image.PreserveAspectCrop
 
                 MouseArea {
-                    id: mouseArea
+                    id: deleteArea
                     anchors.fill: parent
                     onClicked: modelInterface.taskModel.removeTask(model.index)
                 }
@@ -111,7 +111,6 @@ Item {
         color: "#ffcdd2"
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: parent.width * 0.01
         anchors.horizontalCenter: parent.horizontalCenter
 
         Text {
@@ -123,7 +122,6 @@ Item {
             font.pointSize: 20
             text: "Enter task description"
         }
-
 
         TextInput {
             id: textInput
@@ -150,6 +148,32 @@ Item {
             if(textInput.text == "") return;
             modelInterface.taskModel.insertNewTask(textInput.text)
             textInput.clear()
+        }
+    }
+
+    SequentialAnimation {
+        id: addButtonAnim
+        running: false
+        loops: 1
+        NumberAnimation {
+            target: addButton
+            property: "rotation"
+            from: 0; to: 360
+            duration: 500
+            easing.type: Easing.InOutQuad
+        }
+    }
+
+    SequentialAnimation {
+        id: doneButtonAnim
+        running: false
+        loops: 1
+        NumberAnimation {
+            target: doneButton
+            property: "rotation"
+            from: 0; to: 360
+            duration: 500
+            easing.type: Easing.InOutQuad
         }
     }
 }

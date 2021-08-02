@@ -6,13 +6,15 @@ Item {
     width: 60
     height: 60
     anchors.right: parent.right
-    anchors.rightMargin: parent.width * 0.01
+    anchors.rightMargin: parent.width * 0.015
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: parent.width * 0.01
+    anchors.bottomMargin: parent.width * 0.015
 
     property bool isAddButton
     property string buttonText
     property real pointSize
+
+    readonly property alias mouseArea: mouseArea
 
     Rectangle {
         id: buttonRect
@@ -29,18 +31,32 @@ Item {
             font.pointSize: buttonItem.pointSize
             wrapMode: TextEdit.WordWrap
         }
+    }
 
-        MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            onClicked: {
-                if(buttonItem.isAddButton) {
-                    userEntry.visible = true
-                }
-                else {
-                    userEntry.getInputText()
-                }
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: {
+            if(buttonItem.isAddButton) {
+                userEntry.visible = true
+                doneButtonAnim.start()
+            }
+            else {
+                addButtonAnim.start()
+                userEntry.getInputText()
             }
         }
     }
+
+    states: [
+        State {
+            name: "Hovered"
+            when: mouseArea.containsMouse
+            PropertyChanges {
+                target: buttonRect
+                scale: 1.2
+            }
+        }
+    ]
 }
