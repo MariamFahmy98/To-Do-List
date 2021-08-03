@@ -6,9 +6,9 @@ Item {
     width: 60
     height: 60
     anchors.right: parent.right
-    anchors.rightMargin: 5
+    anchors.rightMargin: 10
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: 5
+    anchors.bottomMargin: 10
 
     property bool isAddButton
     property string buttonText
@@ -29,6 +29,8 @@ Item {
             font.bold: true
             font.pointSize: buttonItem.pointSize
             wrapMode: TextEdit.WordWrap
+            horizontalAlignment: Text.AlignHLeft
+            verticalAlignment: Text.AlignVCenter
         }
     }
 

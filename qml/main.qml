@@ -1,6 +1,5 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
-import QtQuick.Window 2.2
 
 Item {
     id: mainWindow
@@ -51,7 +50,7 @@ Item {
                 anchors.verticalCenter: taskDescription.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 10
-                border.color: "black"
+                border.color: "#af4448"
                 border.width: 2
 
                 Image {
@@ -62,7 +61,6 @@ Item {
                     sourceSize.height: parent.height * 0.7
                     anchors.centerIn: parent
                     fillMode: Image.PreserveAspectCrop
-
                 }
 
                 MouseArea {
@@ -126,8 +124,8 @@ Item {
             Image {
                 id: deleteImage
                 source: "delete.png"
-                sourceSize.width: 40
-                sourceSize.height: 40
+                sourceSize.width: 35
+                sourceSize.height: 35
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 10
@@ -139,6 +137,24 @@ Item {
                     onClicked: modelInterface.taskModel.removeTask(model.index)
                 }
             }
+        }
+
+        add: Transition {
+            ParallelAnimation {
+                NumberAnimation { property: "scale"; from: 0; to: 1; duration: 500 }
+                NumberAnimation { properties: "y"; duration: 500 }
+            }
+        }
+
+        remove: Transition {
+            ParallelAnimation {
+                NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 1000 }
+                NumberAnimation { properties: "x"; to: -100; duration: 1000 }
+            }
+        }
+
+        removeDisplaced: Transition {
+            NumberAnimation { properties: "y"; duration: 1000 }
         }
     }
 
@@ -164,6 +180,8 @@ Item {
             id: userEntryText
             anchors.top: userEntry.top
             anchors.topMargin: 10
+            anchors.left: userEntry.left
+            anchors.leftMargin: 10
             color: "#af4448"
             font.bold: true
             font.pointSize: 20
@@ -173,6 +191,8 @@ Item {
         TextInput {
             id: textInput
             anchors.top: userEntryText.bottom
+            anchors.left: userEntry.left
+            anchors.leftMargin: 10
             color: "#e57373"
             font.bold: true
             font.pointSize: 14
