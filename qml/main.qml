@@ -217,30 +217,4 @@ Item {
             textInput.clear()
         }
     }
-
-    SequentialAnimation {
-        id: addButtonAnim
-        running: false
-        loops: 1
-        NumberAnimation {
-            target: addButton
-            property: "rotation"
-            from: 0; to: 360
-            duration: 500
-            easing.type: Easing.InOutQuad
-        }
-    }
-
-    SequentialAnimation {
-        id: doneButtonAnim
-        running: false
-        loops: 1
-        NumberAnimation {
-            target: doneButton
-            property: "rotation"
-            from: 0; to: 360
-            duration: 500
-            easing.type: Easing.InOutQuad
-        }
-    }
 }

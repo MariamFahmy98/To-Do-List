@@ -22,6 +22,8 @@ Item {
         color: "#ffa4a2"
         radius: 100
 
+        property alias text: text
+
         Text {
             id: text
             anchors.centerIn: parent
@@ -39,14 +41,14 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {
+            rotateLeftAnimation.start()
             if(buttonItem.isAddButton) {
                 userEntry.visible = true
-                doneButtonAnim.start()
             }
             else {
-                addButtonAnim.start()
                 userEntry.getInputText()
             }
+            rotateRightAnimation.start()
         }
     }
 
@@ -60,4 +62,52 @@ Item {
             }
         }
     ]
+
+    transform: [
+        Rotation {
+            id: buttonFlip
+            origin.x: buttonItem.width / 2
+            origin.y: buttonItem.height / 2
+            axis { x: 0; y: 1; z: 0 }
+            angle: 0
+        }
+    ]
+
+    ParallelAnimation {
+        id: rotateLeftAnimation
+        loops: 1
+        PropertyAnimation {
+            target: buttonFlip
+            properties: "angle"
+            from: 0
+            to: 180
+            duration: 2500
+        }
+        PropertyAnimation {
+            target: buttonRect.text
+            properties: "scale"
+            from: 1
+            to: 0
+            duration: 2500
+        }
+    }
+
+    ParallelAnimation {
+        id: rotateRightAnimation
+        loops: 1
+        PropertyAnimation {
+            target: buttonFlip
+            properties: "angle"
+            from: 180
+            to: 0
+            duration: 2500
+        }
+        PropertyAnimation {
+            target: buttonRect.text
+            properties: "scale"
+            from: 0
+            to: 1
+            duration: 2500
+        }
+    }
 }
