@@ -19,7 +19,6 @@ Item {
     Rectangle {
         id: buttonRect
         anchors.fill: parent
-        border.width: buttonItem.width * 0.01
         color: "#ffa4a2"
         radius: 100
 

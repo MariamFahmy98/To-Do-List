@@ -44,20 +44,42 @@ Item {
             height: taskList.height * 0.06
             color: "#ffcdd2"
 
-            CheckBox {
+            Rectangle {
                 id: taskState
-                checked: false
+                width: 20
+                height: 20
                 anchors.verticalCenter: taskDescription.verticalCenter
-                onToggled: {
-                    model.isFinished = checked
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                border.color: "black"
+                border.width: 2
+
+                Image {
+                    id: checkImage
+                    source: "marked.png"
+                    visible: model.isFinished
+                    sourceSize.width: parent.width * 0.75
+                    sourceSize.height: parent.height * 0.7
+                    anchors.centerIn: parent
+                    fillMode: Image.PreserveAspectCrop
+
+                }
+
+                MouseArea {
+                    id: changeStateArea
+                    anchors.fill: parent
+                    onClicked: model.isFinished = !model.isFinished
                 }
             }
 
             Item {
                 id: taskDescription
+                width: parent.width - taskState.width - deleteImage.width
                 height: parent.height
                 anchors.left: taskState.right
+                anchors.leftMargin: 10
                 anchors.right: deleteImage.left
+                anchors.rightMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
                 clip: true
 
@@ -66,6 +88,7 @@ Item {
 
                 TextInput {
                     id: textEdit
+                    width: parent.width
                     anchors.verticalCenter: parent.verticalCenter
                     text: model.description
                     color: "#af4448"
@@ -80,6 +103,15 @@ Item {
                         }
                         model.description = text
                     }
+                }
+
+                Rectangle {
+                    id: crossRect
+                    width: taskDescription.width
+                    height: 2
+                    visible: model.isFinished
+                    anchors.centerIn: textEdit
+                    color: "black"
                 }
 
                 MouseArea {

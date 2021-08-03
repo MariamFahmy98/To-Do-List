@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
       <file>delete.png</file>
+      <file>marked.png</file>
     </qresource>
 </RCC>
