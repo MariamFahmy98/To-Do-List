@@ -33,6 +33,8 @@ Item {
         anchors.top: emptySpace.bottom
         spacing: 5
 
+        model: modelInterface.taskModel
+
         header: Rectangle {
             id: headerArea
             width: taskList.width
@@ -47,8 +49,6 @@ Item {
                 text: "To Do List"
             }
         }
-
-        model: modelInterface.taskModel
 
         delegate: Rectangle {
             id: taskItem
@@ -65,26 +65,38 @@ Item {
                 }
             }
 
-            /*Text {
+            Item {
                 id: taskDescription
+                height: parent.height
                 anchors.left: taskState.right
-                anchors.leftMargin: 5
+                anchors.right: deleteImage.left
                 anchors.verticalCenter: parent.verticalCenter
-                text: model.description
-                color: "#af4448"
-                font.bold: true
-                font.pointSize: 18
-            }*/
 
-            TextEdit {
-                id: taskDescription
-                anchors.left: taskState.right
-                anchors.leftMargin: 5
-                anchors.verticalCenter: parent.verticalCenter
-                text: model.description
-                color: "#af4448"
-                font.bold: true
-                font.pointSize: 18
+                property bool isEditMode: false
+
+                TextInput {
+                    id: textEdit
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: model.description
+                    color: "#af4448"
+                    font.bold: true
+                    font.pointSize: 18
+                    focus: taskDescription.isEditMode
+
+                    onAccepted: {
+                        taskDescription.isEditMode = false
+                        if(text == "") return;
+                        model.description = text
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onDoubleClicked: {
+                        taskDescription.forceActiveFocus()
+                        taskDescription.isEditMode = true
+                    }
+                }
             }
 
             Image {
