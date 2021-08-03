@@ -73,6 +73,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 property bool isEditMode: false
+                property string previousDescription: model.description
 
                 TextInput {
                     id: textEdit
@@ -85,7 +86,9 @@ Item {
 
                     onAccepted: {
                         taskDescription.isEditMode = false
-                        if(text == "") return;
+                        if(text == "") {
+                            text = taskDescription.previousDescription
+                        }
                         model.description = text
                     }
                 }
