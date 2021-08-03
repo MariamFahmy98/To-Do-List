@@ -6,9 +6,9 @@ Item {
     width: 60
     height: 60
     anchors.right: parent.right
-    anchors.rightMargin: parent.width * 0.015
+    anchors.rightMargin: 5
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: parent.width * 0.015
+    anchors.bottomMargin: 5
 
     property bool isAddButton
     property string buttonText

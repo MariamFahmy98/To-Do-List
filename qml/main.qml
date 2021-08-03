@@ -7,18 +7,6 @@ Item {
     visible: true
     anchors.fill: parent
 
-    onWidthChanged: {
-        if(mainWindow.width < 600) {
-            console.log("width")
-        }
-    }
-
-    onHeightChanged: {
-        if(mainWindow.height < 300) {
-            console.log("height")
-        }
-    }
-
     Rectangle {
         id: emptySpace
         width: mainWindow.width
@@ -71,6 +59,7 @@ Item {
                 anchors.left: taskState.right
                 anchors.right: deleteImage.left
                 anchors.verticalCenter: parent.verticalCenter
+                clip: true
 
                 property bool isEditMode: false
                 property string previousDescription: model.description
@@ -142,7 +131,7 @@ Item {
         Text {
             id: userEntryText
             anchors.top: userEntry.top
-            anchors.topMargin: userEntry.width * 0.01
+            anchors.topMargin: 10
             color: "#af4448"
             font.bold: true
             font.pointSize: 20
