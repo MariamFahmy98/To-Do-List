@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/qml">
+      <file>qmldir</file>
+      <file>Theme.qml</file>
+      <file>main.qml</file>
+      <file>TaskList.qml</file>
+      <file>UserEntry.qml</file>
+      <file>RoundButton.qml</file>
+    </qresource>
+</RCC>
