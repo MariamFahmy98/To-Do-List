@@ -3,5 +3,7 @@
       <file>main.qml</file>
       <file>RoundButton.qml</file>
       <file>TaskList.qml</file>
+      <file>qmldir</file>
+      <file>Theme.qml</file>
     </qresource>
 </RCC>
