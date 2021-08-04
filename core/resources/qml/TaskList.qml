@@ -108,7 +108,7 @@ ListView {
 			MouseArea {
 				id: deleteArea
 				anchors.fill: parent
-				onClicked: modelInterface.taskModel.removeTask(model.index)
+                onClicked: taskModel.removeTask(model.index)
 			}
 		}
 	}

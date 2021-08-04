@@ -8,7 +8,6 @@ find_package(Qt6 COMPONENTS Core Gui Qml Quick REQUIRED)
 add_executable(todo_app
     main.cpp
     toDoModel.cpp
-    modelInterface.cpp
     resources/qml/resources.qrc
     resources/icons/resources.qrc
 )

@@ -6,7 +6,7 @@ Item {
     function getInputText() {
         if(textInput.text == "") return;
 
-        modelInterface.taskModel.insertNewTask(textInput.text)
+        taskModel.insertNewTask(textInput.text)
         textInput.clear()
     }
 

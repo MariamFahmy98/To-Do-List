@@ -1,6 +1,6 @@
 pragma Singleton
 
-import QtQuick
+import QtQuick 2.9
 
 QtObject {
 	property color primaryColor     : "#F5F5F5"
