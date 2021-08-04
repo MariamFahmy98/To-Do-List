@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
       <file>main.qml</file>
-      <file>ButtonItem.qml</file>
+      <file>RoundButton.qml</file>
     </qresource>
 </RCC>
