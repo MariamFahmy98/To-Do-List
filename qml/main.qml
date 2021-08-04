@@ -81,7 +81,6 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 clip: true
 
-                property bool isEditMode: false
                 property string previousDescription: model.description
 
                 TextInput {
@@ -92,10 +91,9 @@ Item {
                     color: "#af4448"
                     font.bold: true
                     font.pointSize: 18
-                    focus: taskDescription.isEditMode
 
-                    onAccepted: {
-                        taskDescription.isEditMode = false
+                    onEditingFinished: {
+                        textEdit.focus = false
                         if(text == "") {
                             text = taskDescription.previousDescription
                         }
@@ -115,8 +113,8 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onDoubleClicked: {
-                        taskDescription.forceActiveFocus()
-                        taskDescription.isEditMode = true
+                        if(crossRect.visible) return;
+                        textEdit.forceActiveFocus()
                     }
                 }
             }
